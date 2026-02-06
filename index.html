@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Content</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f9f9f9;
+            padding: 30px;
+            text-align: center;
+        }
+        .content-box {
+            background: white;
+            padding: 20px;
+            width: 60%;
+            margin: auto;
+            box-shadow: 0 0 10px gray;
+        }
+        button {
+            margin-top: 20px;
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h2 id="welcome"></h2>
+
+<div class="content-box" id="content"></div>
+
+<button onclick="logout()">Logout</button>
+
+<script>
+    let user = localStorage.getItem("loggedUser");
+
+    if (!user) {
+        window.location.href = "login.html";
+    }
+
+    document.getElementById("welcome").innerText =
+        "Welcome " + user;
+
+    let content = document.getElementById("content");
+
+    if (user === "mohini") {
+        content.innerHTML = `
+            <h3>Mohini's Page</h3>
+            <p>You are creative and organized.</p>
+            <p>This personalized text is only visible to you.</p>
+        `;
+    }
+    else if (user === "bhavesh") {
+        content.innerHTML = `
+            <h3>Bhavesh's Page</h3>
+            <p>You enjoy logic and problem-solving.</p>
+            <p>Keep learning and building projects.</p>
+        `;
+    }
+    else if (user === "waheed") {
+        content.innerHTML = `
+            <h3>Waheed's Page</h3>
+            <p>You are curious and tech-focused.</p>
+            <p>This content is customized just for you.</p>
+        `;
+    }
+
+    function logout() {
+        localStorage.removeItem("loggedUser");
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>
